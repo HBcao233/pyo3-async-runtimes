@@ -138,7 +138,12 @@ version = "1.12"
 features = ["unstable"]
 optional = true
 
-[dependencies.tokio]
+[target.'cfg(not(target_family = "wasm"))'.dependencies.tokio]
 version = "1.13"
 features = ["rt", "rt-multi-thread", "time"]
+optional = true
+
+[target.'cfg(target_family = "wasm")'.dependencies.tokio]
+version = "1.13"
+features = ["rt", "time"]
 optional = true
